@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($ErrorActionPreference='SilentlyContinue'; \"node: $\\(node -v\\)\"; \"npm:  $\\(npm -v\\)\"; \"git:  $\\(git --version\\)\"; \"pnpm: $\\(pnpm -v\\)\")",
+      "PowerShell(winget install -e --id OpenJS.NodeJS.LTS --accept-source-agreements --accept-package-agreements)"
+    ]
+  }
+}

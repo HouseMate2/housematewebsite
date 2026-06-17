@@ -1,0 +1,18 @@
+---
+// Selettore lingua. Per semplicità rimanda alla home dell'altra lingua.
+// TODO (Fase i18n avanzata): mappare il percorso corrente alla pagina
+// equivalente nell'altra lingua (es. /contatti <-> /en/contact).
+import { getLangFromUrl } from '../i18n/utils';
+import { languages, routes } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const other = lang === 'it' ? 'en' : 'it';
+---
+
+<a
+  href={routes[other].home}
+  class="rounded-full border border-black/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-muted transition-colors hover:text-ink"
+  aria-label={`Switch to ${languages[other]}`}
+>
+  {other}
+</a>

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   HouseMate — Design system (Tailwind v4)
+   ---------------------------------------------------------------------------
+   ⚠️ PLACEHOLDER: questa palette è un punto di partenza.
+   Sostituiscila con i colori ufficiali del brand HouseMate appena disponibili.
+   Le variabili qui sotto generano automaticamente le utility Tailwind
+   (es. --color-brand-500  ->  bg-brand-500 / text-brand-500 / border-brand-500).
+   =========================================================================== */
+@theme {
+  /* Brand primario */
+  --color-brand-50:  #eef1ff;
+  --color-brand-100: #e0e5ff;
+  --color-brand-200: #c7d0ff;
+  --color-brand-300: #a4b1ff;
+  --color-brand-400: #7e86ff;
+  --color-brand-500: #5b5bf0;
+  --color-brand-600: #4a44d6;
+  --color-brand-700: #3d36b0;
+  --color-brand-800: #332e8f;
+  --color-brand-900: #2c2a72;
+
+  /* Accento caldo (CTA, evidenziazioni) */
+  --color-accent-400: #ff8a5b;
+  --color-accent-500: #ff6b35;
+  --color-accent-600: #e9551f;
+
+  /* Neutri */
+  --color-ink:   #0c0d12;
+  --color-muted: #6b7280;
+
+  /* Tipografia */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-white text-ink font-sans;
+  }
+
+  /* Accessibilità: rispetta chi ha disattivato le animazioni nel sistema.
+     Lenis e GSAP vengono disattivati via JS, questo copre il CSS. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Contenitore standard delle sezioni */
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout title="Contatti — HouseMate">
+  <section class="py-20 md:py-28">
+    <div class="container-page max-w-2xl">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">{t('contact.title')}</h1>
+      <p class="mt-4 text-lg text-muted">{t('contact.subtitle')}</p>
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>

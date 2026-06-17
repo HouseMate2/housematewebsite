@@ -1,0 +1,62 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!--
+  ⚠️ TODO (Fase 5): collegare un backend per ricevere davvero le email.
+  Opzioni consigliate per un sito statico:
+   - Web3Forms / Formspree: cambia `action` con l'endpoint fornito (zero codice).
+   - Resend + Vercel Function: crea una serverless function e invia qui in POST.
+  Per ora il form è solo UI: l'invio non parte finché non imposti `action`.
+-->
+<form
+  class="mt-10 grid gap-5"
+  action="#"
+  method="POST"
+>
+  <!-- Honeypot anti-spam: i bot lo compilano, gli umani no. -->
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <label class="block">
+      <span class="text-sm font-medium">{t('contact.name')}</span>
+      <input
+        type="text" name="name" required
+        class="mt-1.5 w-full rounded-xl border border-black/10 px-4 py-2.5 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+      />
+    </label>
+    <label class="block">
+      <span class="text-sm font-medium">{t('contact.email')}</span>
+      <input
+        type="email" name="email" required
+        class="mt-1.5 w-full rounded-xl border border-black/10 px-4 py-2.5 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+      />
+    </label>
+  </div>
+
+  <label class="block">
+    <span class="text-sm font-medium">{t('contact.company')}</span>
+    <input
+      type="text" name="company"
+      class="mt-1.5 w-full rounded-xl border border-black/10 px-4 py-2.5 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+    />
+  </label>
+
+  <label class="block">
+    <span class="text-sm font-medium">{t('contact.message')}</span>
+    <textarea
+      name="message" rows="5" required
+      class="mt-1.5 w-full rounded-xl border border-black/10 px-4 py-2.5 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+    ></textarea>
+  </label>
+
+  <button
+    type="submit"
+    class="justify-self-start rounded-full bg-brand-500 px-7 py-3 font-semibold text-white transition-colors hover:bg-brand-600"
+  >
+    {t('contact.submit')}
+  </button>
+</form>
