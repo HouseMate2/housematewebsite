@@ -1,40 +1,49 @@
 @import "tailwindcss";
 
-/* ===========================================================================
-   HouseMate — Design system (Tailwind v4)
-   ---------------------------------------------------------------------------
-   ⚠️ PLACEHOLDER: questa palette è un punto di partenza.
-   Sostituiscila con i colori ufficiali del brand HouseMate appena disponibili.
-   Le variabili qui sotto generano automaticamente le utility Tailwind
-   (es. --color-brand-500  ->  bg-brand-500 / text-brand-500 / border-brand-500).
-   =========================================================================== */
+/* ============================================================================
+   ★ HOUSEMATE — PANNELLO DI CONTROLLO DEL DESIGN ★
+   ----------------------------------------------------------------------------
+   Questo è l'UNICO posto da toccare per cambiare l'aspetto del sito.
+   Modifica un valore qui sotto e si propaga ovunque (utility Tailwind + CSS).
+
+   Palette "Sun & Cream":
+     sun #ffb703 · eerie #252422 · olive #403d39 · sand #ccc5b9 · cream #fffcf2
+   ============================================================================ */
 @theme {
-  /* Brand primario */
-  --color-brand-50:  #eef1ff;
-  --color-brand-100: #e0e5ff;
-  --color-brand-200: #c7d0ff;
-  --color-brand-300: #a4b1ff;
-  --color-brand-400: #7e86ff;
-  --color-brand-500: #5b5bf0;
-  --color-brand-600: #4a44d6;
-  --color-brand-700: #3d36b0;
-  --color-brand-800: #332e8f;
-  --color-brand-900: #2c2a72;
+  /* ---- COLORI (ruoli semantici: cambia qui il brand) --------------------- */
+  --color-bg:            #fffcf2;   /* sfondo pagina (crema)            */
+  --color-surface:       #ffffff;   /* card e superfici                 */
+  --color-ink:           #252422;   /* titoli / testo forte (nero caldo)*/
+  --color-body:          #403d39;   /* testo corpo (oliva scuro)        */
+  --color-muted:         #837d73;   /* testo secondario / didascalie    */
+  --color-line:          #ece6da;   /* bordi e divisori                 */
 
-  /* Accento caldo (CTA, evidenziazioni) */
-  --color-accent-400: #ff8a5b;
-  --color-accent-500: #ff6b35;
-  --color-accent-600: #e9551f;
+  --color-primary:       #ffb703;   /* ★ COLORE PRINCIPALE (sun)      */
+  --color-primary-dark:  #d99a00;   /* hover del primario               */
+  --color-primary-soft:  #fff1c2;   /* sfondo tenue del primario        */
+  --color-on-primary:    #252422;   /* testo sopra il primario          */
 
-  /* Neutri */
-  --color-ink:   #0c0d12;
-  --color-muted: #6b7280;
+  --color-on-dark:       #fdf9ee;   /* testo sopra sezioni scure        */
+  --color-muted-on-dark: #a39d91;   /* testo secondario su scuro        */
 
-  /* Tipografia */
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  /* ---- TIPOGRAFIA -------------------------------------------------------- */
+  --font-sans:    "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Archivo Variable", "Inter Variable", ui-sans-serif, sans-serif;
+
+  /* ---- RAGGI (arrotondamenti) -------------------------------------------- */
+  --radius-button: 9999px;     /* bottoni a pillola        */
+  --radius-card:   1.25rem;    /* card piccole             */
+  --radius-panel:  2rem;       /* pannelli grandi          */
+  --radius-input:  0.875rem;   /* campi form               */
+
+  /* ---- OMBRE ------------------------------------------------------------- */
+  --shadow-card: 0 4px 24px -10px rgba(37, 36, 34, 0.18);
+  --shadow-soft: 0 24px 60px -24px rgba(37, 36, 34, 0.28);
 }
 
+/* ============================================================================
+   STILI BASE
+   ============================================================================ */
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
@@ -42,15 +51,29 @@
   }
 
   body {
-    @apply bg-white text-ink font-sans;
+    background:
+      radial-gradient(70% 30rem at 50% 0%, var(--color-primary-soft) 0%, transparent 65%),
+      var(--color-bg);
+    color: var(--color-body);
+    font-family: var(--font-sans);
   }
 
-  /* Accessibilità: rispetta chi ha disattivato le animazioni nel sistema.
-     Lenis e GSAP vengono disattivati via JS, questo copre il CSS. */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  /* Accessibilità: rispetta chi ha ridotto le animazioni nel sistema */
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -58,7 +81,121 @@
   }
 }
 
+/* ============================================================================
+   COMPONENTI RIUTILIZZABILI (classi centralizzate)
+   ============================================================================ */
+
 /* Contenitore standard delle sezioni */
 @utility container-page {
-  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 75rem;
+  padding-inline: clamp(1.25rem, 5vw, 2rem);
+}
+
+/* Spaziatura verticale di sezione */
+@utility section-y {
+  padding-block: clamp(4rem, 9vw, 7rem);
+}
+
+/* Etichetta sopra i titoli */
+@utility eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* Bottone primario */
+@utility btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  border-radius: var(--radius-button);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: 600; padding: 0.9rem 1.7rem; line-height: 1;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  &:hover { background-color: var(--color-primary-dark); transform: translateY(-1px); }
+}
+
+/* Bottone secondario (contorno) */
+@utility btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  border-radius: var(--radius-button);
+  background-color: transparent; color: var(--color-ink);
+  font-weight: 600; padding: 0.9rem 1.5rem; line-height: 1;
+  border: 1px solid var(--color-line);
+  transition: border-color 0.2s ease, color 0.2s ease;
+  &:hover { border-color: var(--color-ink); }
+}
+
+/* Bottone "store" (pillola scura con icona) */
+@utility btn-store {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  border-radius: var(--radius-button);
+  background-color: var(--color-ink); color: var(--color-on-dark);
+  font-weight: 600; padding: 0.8rem 1.4rem; line-height: 1.1;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  &:hover { transform: translateY(-1px); opacity: 0.92; }
+}
+
+/* Card piccola */
+@utility card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+/* Pannello grande (contenitore sezione, telefono "emerge" dal fondo) */
+@utility panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+}
+/* Sfondi morbidi per i pannelli (gradiente caldo) */
+@utility panel-peach { background: linear-gradient(165deg, #fff8df 0%, #ffe8a3 100%); }
+@utility panel-cream { background: linear-gradient(165deg, #fffaf0 0%, #f5ead0 100%); }
+@utility panel-rose  { background: linear-gradient(165deg, #fff3d1 0%, #ffe0a0 100%); }
+
+/* Chip flottante (badge con metrica) */
+@utility chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  padding: 0.55rem 0.85rem;
+  box-shadow: var(--shadow-card);
+}
+
+/* Barra di navigazione a pillola flottante */
+@utility nav-pill {
+  display: flex; align-items: center; justify-content: space-between;
+  background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+}
+
+/* ============================================================================
+   REVEAL A SCORRIMENTO
+   Lo stato "nascosto" si applica solo se il JS è attivo (classe .js sull'html)
+   e se l'utente non ha disattivato le animazioni: così il contenuto è SEMPRE
+   visibile come fallback. La classe .in-view (aggiunta da reveal.ts) lo rivela.
+   ============================================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-animate] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .js [data-animate].in-view {
+    opacity: 1;
+    transform: none;
+  }
 }

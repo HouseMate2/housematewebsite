@@ -1,0 +1,31 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+import { homeContent } from '../../i18n/content';
+import Icon from '../Icon.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const c = homeContent[lang];
+---
+
+<section class="section-y">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center" data-animate="up">
+      <span class="eyebrow">{c.miniEyebrow}</span>
+      <h2 class="mt-3 text-[clamp(2.1rem,4.5vw,3.25rem)] font-extrabold">{c.miniTitle}</h2>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+      {
+        c.miniFeatures.map((f) => (
+          <div class="card p-6" data-animate="up">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
+              <Icon name={f.icon} class="h-5 w-5" />
+            </span>
+            <h3 class="mt-4 text-base font-semibold">{f.title}</h3>
+            <p class="mt-1 text-sm text-muted">{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

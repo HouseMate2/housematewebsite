@@ -1,62 +1,59 @@
 ---
-import { getLangFromUrl, useTranslations, getRoutes } from '../../i18n/utils';
+import { getLangFromUrl } from '../../i18n/utils';
+import { homeContent } from '../../i18n/content';
+import Icon from '../Icon.astro';
+import PhoneMockup from '../PhoneMockup.astro';
+import StoreButtons from '../StoreButtons.astro';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const r = getRoutes(lang);
+const h = homeContent[lang].hero;
 ---
 
 <section class="relative overflow-hidden">
-  <!-- Sfondo decorativo -->
-  <div
-    class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 via-white to-white"
-    aria-hidden="true"
-  >
-  </div>
-  <div
-    class="pointer-events-none absolute -top-32 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-brand-200/50 blur-3xl"
-    aria-hidden="true"
-  >
-  </div>
+  <div class="container-page pt-16 text-center md:pt-24">
+    <h1 class="mx-auto max-w-4xl text-[clamp(2.75rem,7vw,5rem)] font-extrabold" data-animate="up">
+      {h.title} <span class="text-primary">{h.titleAccent}</span>
+    </h1>
 
-  <div class="container-page grid items-center gap-12 py-20 md:grid-cols-2 md:py-28">
-    <!-- Testo -->
-    <div data-animate="up">
-      <span
-        class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-1.5 text-xs font-semibold text-brand-700"
-      >
-        ✦ {t('hero.badge')}
-      </span>
-      <h1 class="mt-6 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-        {t('hero.title')}
-      </h1>
-      <p class="mt-6 max-w-lg text-lg text-muted">{t('hero.subtitle')}</p>
+    <p class="mx-auto mt-6 max-w-xl text-lg text-muted" data-animate="up">{h.subtitle}</p>
 
-      <div class="mt-8 flex flex-wrap items-center gap-4">
-        <a
-          href={r.download}
-          class="rounded-full bg-brand-500 px-7 py-3 text-base font-semibold text-white shadow-lg shadow-brand-500/20 transition-transform hover:-translate-y-0.5 hover:bg-brand-600"
-        >
-          {t('hero.ctaPrimary')}
-        </a>
-        <a
-          href={r.contact}
-          class="rounded-full px-5 py-3 text-base font-semibold text-ink transition-colors hover:text-brand-600"
-        >
-          {t('hero.ctaSecondary')} →
-        </a>
+    <div class="mt-9 flex flex-col items-center gap-5" data-animate="up">
+      <StoreButtons class="justify-center" />
+      <div class="flex items-center gap-2 text-sm text-muted">
+        <span class="flex text-primary">
+          {
+            Array.from({ length: 5 }).map(() => (
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />
+              </svg>
+            ))
+          }
+        </span>
+        {h.rating}
       </div>
     </div>
 
-    <!-- Mockup telefono (PLACEHOLDER: sostituisci con screenshot reali dell'app) -->
-    <div class="flex justify-center md:justify-end" data-animate="right">
-      <div
-        class="relative aspect-[9/19] w-64 rounded-[2.5rem] border-8 border-ink bg-gradient-to-br from-brand-500 to-brand-700 shadow-2xl sm:w-72"
-      >
-        <div class="absolute left-1/2 top-3 h-5 w-24 -translate-x-1/2 rounded-full bg-ink"></div>
-        <div class="flex h-full items-center justify-center p-6 text-center text-sm font-medium text-white/80">
-          [ Screenshot app<br />HouseMate ]
-        </div>
+    <!-- Telefono centrale con chip flottanti -->
+    <div class="relative mx-auto mt-14 flex max-w-md justify-center" data-animate="up">
+      <PhoneMockup src="/images/discovery houses.webp" alt="HouseMate app screen showing available rooms" />
+
+      <div class="chip absolute -left-6 top-10 hidden lg:flex">
+        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-primary-soft text-primary">
+          <Icon name="shield" class="h-4 w-4" />
+        </span>
+        <span class="text-sm font-medium text-ink">{lang === 'it' ? 'Verificato' : 'Verified'}</span>
+      </div>
+
+      <div class="chip absolute -right-8 top-24 hidden flex-col items-start lg:flex">
+        <span class="text-xs text-muted">{lang === 'it' ? 'Compatibilità' : 'Match'}</span>
+        <span class="text-lg font-bold text-ink">95%</span>
+      </div>
+
+      <div class="chip absolute -left-10 bottom-24 hidden lg:flex">
+        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-primary-soft text-primary">
+          <Icon name="bell" class="h-4 w-4" />
+        </span>
+        <span class="text-sm font-medium text-ink">{lang === 'it' ? 'Nuova stanza · Milano' : 'New room · Milan'}</span>
       </div>
     </div>
   </div>

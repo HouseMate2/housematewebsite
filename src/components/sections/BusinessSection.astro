@@ -1,0 +1,45 @@
+---
+import { getLangFromUrl, getRoutes } from '../../i18n/utils';
+import { homeContent } from '../../i18n/content';
+import Icon from '../Icon.astro';
+import PhoneMockup from '../PhoneMockup.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const r = getRoutes(lang);
+const b = homeContent[lang].business;
+---
+
+<section id="business" class="section-y scroll-mt-28">
+  <div class="container-page">
+    <div class="panel bg-ink text-on-dark">
+      <div class="grid items-end gap-8 px-8 pt-10 sm:px-14 sm:pt-16 md:grid-cols-2">
+        <div class="pb-10 sm:pb-16 md:self-center">
+          <span class="eyebrow">{b.eyebrow}</span>
+          <h2 class="mt-3 max-w-md text-[clamp(1.9rem,3.5vw,2.9rem)] font-extrabold text-on-dark">{b.title}</h2>
+          <p class="mt-4 max-w-md text-lg text-muted-on-dark">{b.text}</p>
+
+          <ul class="mt-7 space-y-3">
+            {
+              b.bullets.map((item) => (
+                <li class="flex items-start gap-3">
+                  <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary">
+                    <Icon name="check" class="h-4 w-4" />
+                  </span>
+                  <span class="text-on-dark">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+
+          <a href={r.contact} class="btn-primary mt-9">{b.cta}</a>
+        </div>
+
+        <div class="flex justify-center md:justify-end">
+          <div class="-mb-12 w-52">
+            <PhoneMockup src="/images/inquiry chat screen.webp" alt="HouseMate inquiry chat screen" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

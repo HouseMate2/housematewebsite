@@ -1,0 +1,30 @@
+---
+// Cornice telefono riutilizzabile.
+// Passa `src` con uno screenshot reale (in /public) per sostituire il segnaposto.
+interface Props {
+  src?: string;
+  alt?: string;
+  label?: string;
+  class?: string;
+}
+const { src, alt = 'Schermata app HouseMate', label = 'Screenshot app', class: cls = '' } =
+  Astro.props;
+---
+
+{
+  src ? (
+    <img src={src} alt={alt} class={`w-full max-w-[260px] drop-shadow-2xl ${cls}`} loading="lazy" />
+  ) : (
+    <div
+      class={`relative aspect-[9/19] w-full max-w-[260px] rounded-[2.4rem] border-[10px] border-ink bg-ink shadow-soft ${cls}`}
+    >
+      <div class="absolute left-1/2 top-2.5 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-ink"></div>
+      <div class="h-full w-full overflow-hidden rounded-[1.6rem]">
+        <div class="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-primary to-primary-dark p-6 text-center text-on-primary">
+          <span class="text-3xl font-bold opacity-90">HM</span>
+          <span class="text-sm font-medium opacity-80">[ {label} ]</span>
+        </div>
+      </div>
+    </div>
+  )
+}

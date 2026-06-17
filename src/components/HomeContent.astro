@@ -1,58 +1,19 @@
 ---
 import Hero from './sections/Hero.astro';
-import PlaceholderSection from './sections/PlaceholderSection.astro';
-import { getLangFromUrl, useTranslations, getRoutes } from '../i18n/utils';
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const r = getRoutes(lang);
-
-// id delle ancore in base alla lingua (coerenti con src/i18n/ui.ts)
-const ids =
-  lang === 'it'
-    ? { features: 'funzionalita', how: 'come-funziona', business: 'business', download: 'download' }
-    : { features: 'features', how: 'how-it-works', business: 'business', download: 'download' };
+import FeatureCards from './sections/FeatureCards.astro';
+import Features from './sections/Features.astro';
+import Stats from './sections/Stats.astro';
+import BusinessSection from './sections/BusinessSection.astro';
+import MiniFeatures from './sections/MiniFeatures.astro';
+import Testimonials from './sections/Testimonials.astro';
+import FinalCta from './sections/FinalCta.astro';
 ---
 
 <Hero />
-
-<PlaceholderSection
-  id={ids.features}
-  eyebrow={t('nav.features')}
-  title={t('features.title')}
-  subtitle={t('features.subtitle')}
-/>
-
-<PlaceholderSection
-  id={ids.how}
-  eyebrow={t('nav.how')}
-  title={t('how.title')}
-  subtitle={t('how.subtitle')}
-  tint
-/>
-
-<PlaceholderSection
-  id={ids.business}
-  eyebrow={t('nav.business')}
-  title={t('business.title')}
-  subtitle={t('business.subtitle')}
-/>
-
-<!-- CTA download -->
-<section id={ids.download} class="scroll-mt-20 py-24">
-  <div class="container-page" data-animate="up">
-    <div class="rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 px-8 py-16 text-center text-white">
-      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">{t('download.title')}</h2>
-      <p class="mx-auto mt-4 max-w-md text-brand-100">{t('download.subtitle')}</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <!-- ⚠️ TODO: collega ai link reali di App Store e Google Play -->
-        <a href="#" class="rounded-full bg-white px-6 py-3 font-semibold text-brand-700 transition-transform hover:-translate-y-0.5">
-           App Store
-        </a>
-        <a href="#" class="rounded-full bg-white/10 px-6 py-3 font-semibold text-white ring-1 ring-white/30 transition-transform hover:-translate-y-0.5">
-          ▶ Google Play
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<FeatureCards />
+<Features />
+<Stats />
+<BusinessSection />
+<MiniFeatures />
+<Testimonials />
+<FinalCta />

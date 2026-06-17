@@ -8,69 +8,60 @@ const year = new Date().getFullYear();
 
 const productLinks = [
   { href: r.features, label: t('nav.features') },
-  { href: r.how, label: t('nav.how') },
   { href: r.business, label: t('nav.business') },
   { href: r.download, label: t('nav.download') },
 ];
 
 const legalLinks = [
-  { href: r.terms, label: t('footer.legal') === 'Legal' ? 'Terms & Conditions' : 'Termini e Condizioni' },
+  { href: r.terms, label: lang === 'it' ? 'Termini e Condizioni' : 'Terms & Conditions' },
   { href: r.privacy, label: 'Privacy Policy' },
   { href: r.cookie, label: 'Cookie Policy' },
 ];
 ---
 
-<footer class="border-t border-black/5 bg-brand-50/40">
-  <div class="container-page grid grid-cols-2 gap-8 py-14 md:grid-cols-4">
-    <!-- Brand -->
+<footer class="bg-ink text-on-dark">
+  <div class="container-page grid grid-cols-2 gap-8 py-16 md:grid-cols-4">
     <div class="col-span-2 md:col-span-1">
-      <a href={r.home} class="text-lg font-bold tracking-tight">
-        House<span class="text-brand-500">Mate</span>
+      <a href={r.home} class="font-display text-xl font-extrabold tracking-tight text-on-dark">
+        House<span class="text-primary">Mate</span>
       </a>
-      <p class="mt-3 max-w-xs text-sm text-muted">{t('footer.tagline')}</p>
+      <p class="mt-3 max-w-xs text-sm text-muted-on-dark">{t('footer.tagline')}</p>
     </div>
 
-    <!-- Prodotto -->
     <div>
-      <h3 class="text-xs font-semibold uppercase tracking-wider text-muted">
+      <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-muted-on-dark">
         {t('footer.product')}
       </h3>
       <ul class="mt-4 space-y-2">
         {productLinks.map((l) => (
-          <li>
-            <a href={l.href} class="text-sm text-ink/80 transition-colors hover:text-brand-600">{l.label}</a>
-          </li>
+          <li><a href={l.href} class="text-sm text-on-dark/75 transition-colors hover:text-primary">{l.label}</a></li>
         ))}
       </ul>
     </div>
 
-    <!-- Azienda -->
     <div>
-      <h3 class="text-xs font-semibold uppercase tracking-wider text-muted">
+      <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-muted-on-dark">
         {t('footer.company')}
       </h3>
       <ul class="mt-4 space-y-2">
-        <li><a href={r.contact} class="text-sm text-ink/80 transition-colors hover:text-brand-600">{t('nav.contact')}</a></li>
+        <li><a href={r.contact} class="text-sm text-on-dark/75 transition-colors hover:text-primary">{t('nav.contact')}</a></li>
       </ul>
     </div>
 
-    <!-- Legale -->
     <div>
-      <h3 class="text-xs font-semibold uppercase tracking-wider text-muted">
+      <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-muted-on-dark">
         {t('footer.legal')}
       </h3>
       <ul class="mt-4 space-y-2">
         {legalLinks.map((l) => (
-          <li>
-            <a href={l.href} class="text-sm text-ink/80 transition-colors hover:text-brand-600">{l.label}</a>
-          </li>
+          <li><a href={l.href} class="text-sm text-on-dark/75 transition-colors hover:text-primary">{l.label}</a></li>
         ))}
       </ul>
     </div>
   </div>
 
-  <div class="border-t border-black/5">
-    <div class="container-page flex flex-col gap-1 py-6 text-xs text-muted">
+  <div class="border-t border-white/10">
+    <div class="container-page flex flex-col gap-1 py-6 text-xs text-muted-on-dark">
       <p>© {year} HouseMate. {t('footer.rights')}</p>
       <!-- ⚠️ TODO: inserisci ragione sociale, sede legale e P.IVA reali (obbligatori in Italia). -->
       <p>HouseMate [Ragione Sociale] · P.IVA [00000000000] · [Indirizzo sede legale]</p>

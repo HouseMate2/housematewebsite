@@ -1,0 +1,45 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+import { panels } from '../../i18n/content';
+import Icon from '../Icon.astro';
+import PhoneMockup from '../PhoneMockup.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const items = panels[lang];
+const mockups = [
+  {
+    src: '/images/discovery mates.webp',
+    alt: 'HouseMate app screen showing roommate discovery',
+  },
+  {
+    src: '/images/discovery houses.webp',
+    alt: 'HouseMate app screen showing available rooms',
+  },
+];
+---
+
+<section class="section-y">
+  <div class="container-page flex flex-col gap-6">
+    {
+      items.map((p, i) => (
+        <div class={`panel ${p.tint}`} data-animate="up">
+          <div class="grid items-end gap-8 px-8 pt-10 sm:px-14 sm:pt-16 md:grid-cols-2">
+            <div class={`pb-10 sm:pb-16 md:self-center ${i % 2 === 1 ? 'md:order-2' : ''}`}>
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-primary shadow-card">
+                <Icon name={p.icon} class="h-6 w-6" />
+              </span>
+              <h3 class="mt-5 max-w-md text-[clamp(1.6rem,3vw,2.4rem)] font-bold">{p.title}</h3>
+              <p class="mt-4 max-w-md text-lg text-muted">{p.text}</p>
+            </div>
+
+            <div class={`flex justify-center md:justify-end ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+              <div class="-mb-12 w-52">
+                <PhoneMockup src={mockups[i % mockups.length].src} alt={mockups[i % mockups.length].alt} />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
