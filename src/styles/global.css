@@ -179,6 +179,31 @@
   box-shadow: var(--shadow-card);
 }
 
+@media (max-width: 767px) {
+  #site-nav {
+    border-radius: var(--radius-button);
+  }
+
+  #site-nav[data-open='true'] {
+    border-radius: 1.5rem;
+  }
+
+  #mobile-menu {
+    opacity: 0;
+    transform: translateY(-0.35rem);
+    transition:
+      opacity 0.28s ease 0.08s,
+      transform 0.36s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+    pointer-events: none;
+  }
+
+  #site-nav[data-open='true'] #mobile-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
 /* ============================================================================
    REVEAL A SCORRIMENTO
    Lo stato "nascosto" si applica solo se il JS è attivo (classe .js sull'html)
@@ -188,10 +213,10 @@
 @media (prefers-reduced-motion: no-preference) {
   .js [data-animate] {
     opacity: 0;
-    transform: translateY(26px);
+    transform: translateY(34px);
     transition:
-      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform;
   }
   .js [data-animate].in-view {

@@ -13,8 +13,12 @@ const links = [
 ---
 
 <div class="sticky top-4 z-50">
-  <div class="container-page flex justify-center">
-    <nav class="nav-pill relative inline-flex h-14 w-fit max-w-[calc(100vw-2rem)] gap-6 px-3 pl-5 md:gap-8">
+  <div class="container-page relative flex h-14 justify-center md:h-auto">
+    <nav
+      id="site-nav"
+      class="nav-pill absolute top-0 flex w-full max-w-sm flex-col overflow-hidden px-3 transition-[max-height,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] max-h-14 md:relative md:w-fit md:max-w-[calc(100vw-2rem)] md:flex-row md:gap-8 md:overflow-visible md:px-3 md:pl-5 md:max-h-14"
+    >
+      <div class="flex h-14 w-full shrink-0 items-center justify-between gap-6 pl-2 md:w-auto md:pl-0">
       <a href={r.home} class="flex items-center gap-2 font-display text-xl font-extrabold tracking-tight text-ink">
         <svg
           class="h-8 w-auto shrink-0 text-ink"
@@ -44,8 +48,10 @@ const links = [
       </ul>
 
       <div class="flex items-center gap-2">
-        <LanguagePicker />
-        <a href={r.contact} class="btn-primary hidden px-5 py-2 text-sm sm:inline-flex">
+        <span class="hidden md:inline-flex">
+          <LanguagePicker />
+        </span>
+        <a href={r.contact} class="btn-primary hidden px-5 py-2 text-sm md:inline-flex">
           {t('nav.contact')}
         </a>
         <button
@@ -56,37 +62,61 @@ const links = [
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <svg data-menu-icon="open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <line x1="4" y1="7" x2="20" y2="7"></line>
             <line x1="4" y1="12" x2="20" y2="12"></line>
             <line x1="4" y1="17" x2="20" y2="17"></line>
           </svg>
+          <svg data-menu-icon="close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+            <line x1="5" y1="5" x2="19" y2="19"></line>
+            <line x1="19" y1="5" x2="5" y2="19"></line>
+          </svg>
         </button>
       </div>
-    </nav>
+      </div>
 
-    <div id="mobile-menu" class="mx-auto mt-2 hidden w-full max-w-sm md:hidden">
-      <ul class="card flex flex-col gap-1 p-3 shadow-card">
+      <div id="mobile-menu" class="border-t border-line/60 px-5 pb-7 pt-6 md:hidden">
+      <ul class="flex flex-col items-center gap-5 text-center">
         {
           links.map((link) => (
             <li>
-              <a href={link.href} class="block rounded-xl px-3 py-2 text-base font-medium text-ink hover:bg-primary-soft">
+              <a href={link.href} class="text-base font-semibold text-muted transition-colors hover:text-ink">
                 {link.label}
               </a>
             </li>
           ))
         }
-        <li><a href={r.contact} class="btn-primary mt-1 w-full justify-center">{t('nav.contact')}</a></li>
+        <li>
+          <LanguagePicker />
+        </li>
+        <li><a href={r.contact} class="btn-primary mt-1 justify-center px-7">{t('nav.contact')}</a></li>
       </ul>
-    </div>
+      </div>
+    </nav>
   </div>
 </div>
 
 <script>
   const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('site-nav');
   const menu = document.getElementById('mobile-menu');
+  const openIcon = toggle?.querySelector('[data-menu-icon="open"]');
+  const closeIcon = toggle?.querySelector('[data-menu-icon="close"]');
+
+  const setOpen = (open) => {
+    nav?.setAttribute('data-open', String(open));
+    nav?.classList.toggle('max-h-14', !open);
+    nav?.classList.toggle('max-h-80', open);
+    openIcon?.classList.toggle('hidden', open);
+    closeIcon?.classList.toggle('hidden', !open);
+    toggle?.setAttribute('aria-expanded', String(open));
+  };
+
   toggle?.addEventListener('click', () => {
-    const open = menu?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(open));
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
   });
 </script>
