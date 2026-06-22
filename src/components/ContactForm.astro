@@ -6,17 +6,20 @@ const t = useTranslations(lang);
 
 const fieldClass =
   'mt-1.5 w-full rounded-input border border-line bg-surface px-4 py-2.5 outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary-soft';
+
+const successPath = lang === 'it' ? '/grazie' : '/en/thank-you';
 ---
 
-<!--
-  ⚠️ TODO (Fase 5): collegare un backend per ricevere davvero le email.
-  Opzioni consigliate per un sito statico:
-   - Web3Forms / Formspree: cambia `action` con l'endpoint fornito (zero codice).
-   - Resend + Vercel Function: crea una serverless function e invia qui in POST.
-  Per ora il form è solo UI: l'invio non parte finché non imposti `action`.
--->
-<form class="mt-10 grid gap-5" action="#" method="POST">
-  <!-- Honeypot anti-spam: i bot lo compilano, gli umani no. -->
+<form
+  class="mt-10 grid gap-5"
+  name="contact"
+  action={successPath}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="_gotcha"
+>
+  <input type="hidden" name="form-name" value="contact" />
+
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
   <div class="grid gap-5 sm:grid-cols-2">

@@ -1,0 +1,51 @@
+---
+// Mockup telefono: uno principale (`front`) e, opzionale, un secondo (`back`)
+// che si sovrappone. Sullo scroll i due slittano in verticale in direzioni
+// opposte (data-fx gestito da scripts/scrollFx.ts).
+//   size:   'md' (pannelli) | 'lg' (hero, più grande)
+//   mirror: true → il telefono secondario si sovrappone a SINISTRA (per le
+//           sezioni con il mockup a sinistra, così l'overlap resta simmetrico)
+interface Shot {
+  src: string;
+  alt: string;
+}
+interface Props {
+  front: Shot;
+  back?: Shot;
+  size?: 'md' | 'lg';
+  mirror?: boolean;
+  class?: string;
+}
+const { front, back, size = 'md', mirror = false, class: cls = '' } = Astro.props;
+
+const frontW =
+  size === 'lg'
+    ? 'w-88 max-w-[88vw] sm:w-[26rem] md:w-[34rem]'
+    : 'w-84 max-w-[88vw] sm:w-[23rem] md:w-[28rem]';
+const backW = size === 'lg' ? 'w-64 max-w-[58vw] sm:w-80 md:w-96' : 'w-64 max-w-[58vw] sm:w-80';
+const backPos =
+  mirror
+    ? '-left-7 -top-8 sm:-left-14 md:-left-16'
+    : '-right-7 -top-8 sm:-right-14 md:-right-16';
+---
+
+<div class={`relative mx-auto w-fit pb-12 sm:pb-14 ${cls}`}>
+  {
+    back && (
+      <img
+        src={back.src}
+        alt={back.alt}
+        loading="lazy"
+        data-fx="drift-down"
+        class={`absolute z-0 ${backPos} ${backW} drop-shadow-2xl`}
+      />
+    )
+  }
+  <img
+    src={front.src}
+    alt={front.alt}
+    loading="lazy"
+    data-fx="drift-up"
+    class={`relative z-10 ${frontW} drop-shadow-2xl`}
+  />
+</div>

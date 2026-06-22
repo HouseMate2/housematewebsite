@@ -9,7 +9,6 @@ const r = getRoutes(lang);
 const links = [
   { href: r.features, label: t('nav.features') },
   { href: r.business, label: t('nav.business') },
-  { href: r.contact, label: t('nav.contact') },
 ];
 ---
 
@@ -46,8 +45,8 @@ const links = [
 
       <div class="flex items-center gap-2">
         <LanguagePicker />
-        <a href={r.download} class="btn-store hidden px-4 py-2 text-sm sm:inline-flex">
-          {t('nav.download')}
+        <a href={r.contact} class="btn-primary hidden px-5 py-2 text-sm sm:inline-flex">
+          {t('nav.contact')}
         </a>
         <button
           type="button"
@@ -77,7 +76,7 @@ const links = [
             </li>
           ))
         }
-        <li><a href={r.download} class="btn-store mt-1 w-full justify-center">{t('nav.download')}</a></li>
+        <li><a href={r.contact} class="btn-primary mt-1 w-full justify-center">{t('nav.contact')}</a></li>
       </ul>
     </div>
   </div>

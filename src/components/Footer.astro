@@ -9,13 +9,14 @@ const year = new Date().getFullYear();
 const productLinks = [
   { href: r.features, label: t('nav.features') },
   { href: r.business, label: t('nav.business') },
-  { href: r.download, label: t('nav.download') },
+  { href: r.contact, label: t('nav.contact') },
 ];
 
 const legalLinks = [
   { href: r.terms, label: lang === 'it' ? 'Termini e Condizioni' : 'Terms & Conditions' },
   { href: r.privacy, label: 'Privacy Policy' },
   { href: r.cookie, label: 'Cookie Policy' },
+  { href: r.community, label: lang === 'it' ? 'Linee guida community' : 'Community Guidelines' },
 ];
 ---
 
@@ -64,7 +65,6 @@ const legalLinks = [
     <div class="container-page flex flex-col gap-1 py-6 text-xs text-muted-on-dark">
       <p>© {year} HouseMate. {t('footer.rights')}</p>
       <!-- ⚠️ TODO: inserisci ragione sociale, sede legale e P.IVA reali (obbligatori in Italia). -->
-      <p>HouseMate [Ragione Sociale] · P.IVA [00000000000] · [Indirizzo sede legale]</p>
     </div>
   </div>
 </footer>

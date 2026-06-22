@@ -1,8 +1,5 @@
 // ============================================================================
-// HouseMate — Dizionario testi (i18n)
-// ----------------------------------------------------------------------------
-// Tutti i testi del sito passano da qui, così aggiungere/curare una lingua
-// significa solo aggiornare questo file. `it` è la lingua di riferimento.
+// HouseMate - Site copy dictionary (i18n)
 // ============================================================================
 
 export const languages = {
@@ -14,8 +11,6 @@ export const defaultLang = 'it';
 
 export type Lang = keyof typeof languages;
 
-// Rotte localizzate: gli slug possono differire tra lingue (più SEO-friendly).
-// Se aggiungi una pagina, aggiungila qui e crea i file in src/pages/.
 export const routes = {
   it: {
     home: '/',
@@ -23,10 +18,11 @@ export const routes = {
     how: '/#come-funziona',
     business: '/#business',
     download: '/#download',
-    contact: '/contatti',
+    contact: '/#contatti',
     terms: '/termini',
     privacy: '/privacy',
     cookie: '/cookie',
+    community: '/linee-guida-community',
   },
   en: {
     home: '/en/',
@@ -34,42 +30,42 @@ export const routes = {
     how: '/en/#how-it-works',
     business: '/en/#business',
     download: '/en/#download',
-    contact: '/en/contact',
+    contact: '/en/#contatti',
     terms: '/en/terms',
     privacy: '/en/privacy',
     cookie: '/en/cookie',
+    community: '/en/community-guidelines',
   },
 } as const;
 
 export const ui = {
   it: {
     'site.description':
-      'HouseMate è l’app che semplifica la ricerca di stanze e coinquilini. Scopri come funziona e scarica l’app.',
+      "HouseMate e' l'app che semplifica la ricerca di stanze e coinquilini. Scopri come funziona e scarica l'app.",
 
-    'nav.features': 'Funzionalità',
+    'nav.features': 'Funzionalita',
     'nav.how': 'Come funziona',
     'nav.business': 'Per i business',
     'nav.contact': 'Contatti',
-    'nav.download': 'Scarica l’app',
+    'nav.download': "Scarica l'app",
     'nav.menu': 'Menu',
 
     'hero.badge': 'La tua casa condivisa, semplice',
     'hero.title': 'Trova la stanza giusta. Trova i coinquilini giusti.',
     'hero.subtitle':
-      'HouseMate mette in contatto chi cerca una stanza e chi la affitta, con un’esperienza pensata per smartphone. [PLACEHOLDER: rifinisci con la tua value proposition reale.]',
-    'hero.ctaPrimary': 'Scarica l’app',
+      "HouseMate mette in contatto chi cerca una stanza e chi la affitta, con un'esperienza pensata per smartphone.",
+    'hero.ctaPrimary': "Scarica l'app",
     'hero.ctaSecondary': 'Sei un business?',
 
-    'features.title': 'Tutto quello che ti serve, in un’unica app',
-    'features.subtitle':
-      '[PLACEHOLDER] Inserisci qui le 3–6 funzionalità chiave dell’app.',
+    'features.title': "Tutto quello che ti serve, in un'unica app",
+    'features.subtitle': 'Scopri stanze, coinquilini, match e chat in modo semplice.',
 
     'how.title': 'Come funziona',
-    'how.subtitle': '[PLACEHOLDER] Spiega il percorso utente in pochi passaggi.',
+    'how.subtitle': 'Completa il profilo, scopri match e organizza tutto in chat.',
 
     'business.title': 'Affitti camere? HouseMate lavora per te.',
     'business.subtitle':
-      '[PLACEHOLDER] Spiega il valore per i business: visibilità, gestione annunci, contatti qualificati.',
+      'Pubblica stanze, ricevi richieste qualificate e gestisci i contatti in un unico posto.',
     'business.cta': 'Contattaci',
 
     'download.title': 'Pronto a iniziare?',
@@ -91,7 +87,7 @@ export const ui = {
     'contact.submit': 'Invia richiesta',
 
     'legal.draftNotice':
-      '⚠️ Questo è un testo segnaposto. Sostituiscilo con il documento legale definitivo, possibilmente revisionato da un professionista.',
+      'Bozza pre-lancio: documento predisposto sulla base delle funzionalita attuali di HouseMate.',
   },
   en: {
     'site.description':
@@ -107,20 +103,19 @@ export const ui = {
     'hero.badge': 'Shared living, made simple',
     'hero.title': 'Find the right room. Find the right roommates.',
     'hero.subtitle':
-      'HouseMate connects people looking for a room with those renting one, in a mobile-first experience. [PLACEHOLDER: refine with your real value proposition.]',
+      'HouseMate connects people looking for a room with those renting one, in a mobile-first experience.',
     'hero.ctaPrimary': 'Get the app',
     'hero.ctaSecondary': 'Are you a business?',
 
     'features.title': 'Everything you need, in one app',
-    'features.subtitle':
-      '[PLACEHOLDER] Add your 3–6 key app features here.',
+    'features.subtitle': 'Discover rooms, roommates, matches and chats in one simple flow.',
 
     'how.title': 'How it works',
-    'how.subtitle': '[PLACEHOLDER] Explain the user journey in a few steps.',
+    'how.subtitle': 'Complete your profile, discover matches and organize everything in chat.',
 
     'business.title': 'Renting out rooms? HouseMate works for you.',
     'business.subtitle':
-      '[PLACEHOLDER] Explain the value for businesses: visibility, listing management, qualified leads.',
+      'Publish rooms, receive qualified requests and manage contacts in one place.',
     'business.cta': 'Get in touch',
 
     'download.title': 'Ready to start?',
@@ -134,7 +129,7 @@ export const ui = {
 
     'contact.title': 'Contact HouseMate',
     'contact.subtitle':
-      'Are you a business and want to list your rooms on HouseMate? Write to us and we’ll get back to you soon.',
+      'Are you a business and want to list your rooms on HouseMate? Write to us and we will get back to you soon.',
     'contact.name': 'Name',
     'contact.email': 'Email',
     'contact.company': 'Company',
@@ -142,6 +137,6 @@ export const ui = {
     'contact.submit': 'Send request',
 
     'legal.draftNotice':
-      '⚠️ This is placeholder text. Replace it with the final legal document, ideally reviewed by a professional.',
+      'Pre-launch draft: this document is based on the current HouseMate product scope. Before commercial launch, add the controller details and have the text reviewed by a qualified professional.',
   },
 } as const;

@@ -1,15 +1,31 @@
 ---
-import { getLangFromUrl } from '../../i18n/utils';
+import { getLangFromUrl, getRoutes } from '../../i18n/utils';
 import { homeContent } from '../../i18n/content';
 import Icon from '../Icon.astro';
-import PhoneMockup from '../PhoneMockup.astro';
-import StoreButtons from '../StoreButtons.astro';
+import DualPhone from '../DualPhone.astro';
 
 const lang = getLangFromUrl(Astro.url);
+const r = getRoutes(lang);
 const h = homeContent[lang].hero;
+
+const front = {
+  src: '/images/discovery houses iPhone.webp',
+  alt: lang === 'it' ? 'Scopri le stanze disponibili' : 'Discover available rooms',
+};
+const back = {
+  src: '/images/discovery mates iPhone.webp',
+  alt: lang === 'it' ? 'Scopri i coinquilini' : 'Discover roommates',
+};
 ---
 
-<section class="relative overflow-hidden">
+<section class="relative overflow-x-hidden">
+  <div
+    class="pointer-events-none absolute inset-0 -z-10"
+    style="background: radial-gradient(72% 56% at 50% -5%, var(--color-primary-soft) 0%, transparent 64%), var(--color-bg);"
+    aria-hidden="true"
+  >
+  </div>
+
   <div class="container-page pt-16 text-center md:pt-24">
     <h1 class="mx-auto max-w-4xl text-[clamp(2.75rem,7vw,5rem)] font-extrabold" data-animate="up">
       {h.title} <span class="text-primary">{h.titleAccent}</span>
@@ -17,44 +33,18 @@ const h = homeContent[lang].hero;
 
     <p class="mx-auto mt-6 max-w-xl text-lg text-muted" data-animate="up">{h.subtitle}</p>
 
-    <div class="mt-9 flex flex-col items-center gap-5" data-animate="up">
-      <StoreButtons class="justify-center" />
-      <div class="flex items-center gap-2 text-sm text-muted">
-        <span class="flex text-primary">
-          {
-            Array.from({ length: 5 }).map(() => (
-              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />
-              </svg>
-            ))
-          }
-        </span>
-        {h.rating}
-      </div>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3" data-animate="up">
+      <a href={r.features} class="btn-primary">{h.ctaPrimary}</a>
+      <a href={r.business} class="btn-secondary">{h.ctaSecondary}</a>
     </div>
 
-    <!-- Telefono centrale con chip flottanti -->
-    <div class="relative mx-auto mt-14 flex max-w-md justify-center" data-animate="up">
-      <PhoneMockup src="/images/discovery houses.webp" alt="HouseMate app screen showing available rooms" />
+    <p class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-muted" data-animate="up">
+      <Icon name="sparkle" class="h-4 w-4 text-primary" />
+      {h.comingSoon}
+    </p>
 
-      <div class="chip absolute -left-6 top-10 hidden lg:flex">
-        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-primary-soft text-primary">
-          <Icon name="shield" class="h-4 w-4" />
-        </span>
-        <span class="text-sm font-medium text-ink">{lang === 'it' ? 'Verificato' : 'Verified'}</span>
-      </div>
-
-      <div class="chip absolute -right-8 top-24 hidden flex-col items-start lg:flex">
-        <span class="text-xs text-muted">{lang === 'it' ? 'Compatibilità' : 'Match'}</span>
-        <span class="text-lg font-bold text-ink">95%</span>
-      </div>
-
-      <div class="chip absolute -left-10 bottom-24 hidden lg:flex">
-        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-primary-soft text-primary">
-          <Icon name="bell" class="h-4 w-4" />
-        </span>
-        <span class="text-sm font-medium text-ink">{lang === 'it' ? 'Nuova stanza · Milano' : 'New room · Milan'}</span>
-      </div>
+    <div class="mt-14 md:mt-18">
+      <DualPhone front={front} back={back} size="lg" />
     </div>
   </div>
 </section>

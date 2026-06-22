@@ -2,6 +2,113 @@
 import LegalLayout from '../layouts/LegalLayout.astro';
 ---
 
-<LegalLayout title="Privacy Policy">
-  <p>[ Inserisci qui l'informativa privacy (GDPR). Argomenti tipici: titolare del trattamento, dati raccolti, finalità e base giuridica, conservazione, diritti dell'interessato, trasferimenti, contatti del DPO se presente. ]</p>
+<LegalLayout title="Privacy Policy" lastUpdated="22 giugno 2026" effectiveDate="Bozza pre-lancio" version="2026-06-22">
+  <p>
+    Questa informativa descrive come HouseMate tratta i dati personali degli utenti del sito e dell'app HouseMate. HouseMate e' un servizio pensato per mettere in contatto persone che cercano stanze, coinquilini e soluzioni di coabitazione, anche tramite funzioni di profilo, matching, annunci, chat e segnalazioni.
+  </p>
+
+  <h2>1. Titolare e contatti</h2>
+  <p>
+    I dati identificativi completi del titolare del trattamento saranno integrati prima dell'apertura del servizio al pubblico o della raccolta stabile di dati personali. Per qualsiasi richiesta privacy, supporto, segnalazione o comunicazione legale puoi scrivere a <a href="mailto:info@housemateapp.it">info@housemateapp.it</a>.
+  </p>
+  <p>
+    Alla data di questa bozza non e' stato nominato un Responsabile della protezione dei dati (DPO). Se in futuro la nomina diventera' necessaria o opportuna, i relativi contatti saranno pubblicati in questa informativa.
+  </p>
+
+  <h2>2. Dati che trattiamo</h2>
+  <p>In base alle funzionalita' effettivamente usate, HouseMate puo' trattare le seguenti categorie di dati:</p>
+  <ul>
+    <li>dati account e autenticazione, come email, identificativo utente, metodo di login, dati tecnici gestiti da Supabase Auth e, se usi login social, dati essenziali forniti da Google o Apple;</li>
+    <li>dati di consenso, come versione dei termini e della privacy policy accettata, data e ora di accettazione, consenso facoltativo a comunicazioni marketing o profilazione ove attivato;</li>
+    <li>dati profilo, come nome, foto profilo, genere, data di nascita, eta' derivata, bio, professione, categoria professionale, universita' se sei studente, lingue parlate, budget, data di ingresso, durata della permanenza e preferenze di convivenza;</li>
+    <li>dati relativi allo stile di vita e alla compatibilita', come ritmo quotidiano, presenza in casa, uso della cucina, ospiti, socialita', partner, sostanze, pulizia, condivisione, rumore, animali, interessi e tag di affinita';</li>
+    <li>dati di localizzazione scelti dall'utente, come punto sulla mappa, raggio di ricerca, nome zona o citta'. HouseMate usa il punto selezionato dall'utente e non dichiara di usare localizzazione GPS automatica o geolocalizzazione tramite IP;</li>
+    <li>dati annunci, come titolo, descrizione, foto, tipologia immobile/stanza, indirizzo o zona, coordinate precise, prezzo, deposito, bollette, disponibilita', numero stanze, residenti, metri quadri, bagni, servizi e tag lifestyle;</li>
+    <li>dati di discovery e matching, come skip, preferiti, richieste, match, punteggi di compatibilita' e criteri usati per ordinare profili o annunci;</li>
+    <li>dati di comunicazione, come conversazioni dirette, richieste sugli annunci, chat di gruppo, messaggi, partecipanti, stato lettura, preferenze conversazione e immagini di gruppo;</li>
+    <li>dati di sicurezza e moderazione, come segnalazioni, motivi, dettagli forniti, metadati della conversazione segnalata e informazioni necessarie a prevenire abusi;</li>
+    <li>dati tecnici, come log applicativi, identificativi di sessione, informazioni dispositivo, metadati di rete e dati necessari a sicurezza, diagnostica e funzionamento del servizio.</li>
+  </ul>
+
+  <h2>3. Dati particolari e contenuti sensibili</h2>
+  <p>
+    HouseMate non richiede intenzionalmente categorie particolari di dati personali ai sensi del GDPR, come dati sanitari, convinzioni religiose, orientamento politico o dati biometrici. Alcune preferenze o testi liberi, ad esempio bio, chat, segnalazioni o informazioni su sostanze, possono pero' rivelare aspetti personali. Ti chiediamo di non inserire dati sensibili non necessari e di non pubblicare dati di terzi senza autorizzazione.
+  </p>
+
+  <h2>4. Finalita' e basi giuridiche</h2>
+  <ul>
+    <li>Creazione account, login e sicurezza: esecuzione del contratto e interesse legittimo alla protezione del servizio.</li>
+    <li>Gestione profilo, onboarding, annunci, matching, preferiti, chat e richieste: esecuzione del contratto e misure precontrattuali richieste dall'utente.</li>
+    <li>Calcolo e ordinamento dei risultati di matching: esecuzione del servizio e interesse legittimo a mostrare risultati pertinenti.</li>
+    <li>Moderazione, prevenzione frodi, gestione segnalazioni, enforcement dei termini: interesse legittimo e, quando applicabile, obblighi di legge.</li>
+    <li>Conservazione di consensi, versioni policy, log essenziali e prove operative: obblighi di legge e interesse legittimo alla tutela dei diritti.</li>
+    <li>Comunicazioni di servizio: esecuzione del contratto.</li>
+    <li>Comunicazioni marketing o personalizzazioni non necessarie: consenso, revocabile in qualsiasi momento.</li>
+  </ul>
+
+  <h2>5. Matching, ranking e profilazione</h2>
+  <p>
+    HouseMate usa informazioni fornite dagli utenti per suggerire profili, coinquilini e annunci potenzialmente compatibili. Il sistema puo' considerare distanza, budget, data di ingresso, durata della permanenza, abitudini quotidiane, preferenze di convivenza, interessi, professione e altri dati del profilo.
+  </p>
+  <p>
+    Queste funzioni servono a ordinare e raccomandare contenuti nell'app. Non producono decisioni con effetti giuridici o effetti analogamente significativi sugli utenti: gli utenti restano liberi di ignorare, saltare, preferire, contattare o non contattare altri utenti o annunci.
+  </p>
+
+  <h2>6. Visibilita' dei dati agli altri utenti</h2>
+  <p>
+    Alcuni dati del profilo e degli annunci sono mostrati ad altri utenti autenticati attraverso viste o funzioni minimizzate. Per esempio, gli utenti possono vedere nome, foto, bio, eta', zona approssimativa, distanza, preferenze rilevanti, compatibilita', annunci pubblicati e immagini. Le coordinate precise del profilo e gli indirizzi completi degli annunci non sono pensati per essere esposti nella discovery generale; possono essere usati internamente per distanza, ranking e gestione dell'annuncio, e possono essere mostrati in contesti autorizzati come una richiesta o conversazione relativa all'annuncio.
+  </p>
+
+  <h2>7. Fornitori e destinatari</h2>
+  <p>Possiamo condividere o rendere accessibili dati personali a fornitori che operano per HouseMate, nei limiti necessari alle rispettive finalita':</p>
+  <ul>
+    <li>Supabase, per autenticazione, database, storage, funzioni realtime e gestione sessioni;</li>
+    <li>Google e Apple, se scegli il login social;</li>
+    <li>OpenStreetMap, Nominatim e fornitori mappe/tile collegati, per ricerca indirizzi e visualizzazione mappa;</li>
+    <li>provider email, hosting, dominio, sicurezza, assistenza e strumenti operativi che saranno adottati;</li>
+    <li>autorita' pubbliche, consulenti o controparti, quando richiesto dalla legge o necessario per tutelare diritti, sicurezza e integrita' del servizio.</li>
+  </ul>
+
+  <h2>8. Trasferimenti fuori dallo Spazio Economico Europeo</h2>
+  <p>
+    Alcuni fornitori possono trattare dati o metadati anche fuori dallo Spazio Economico Europeo. In tal caso HouseMate adottera' strumenti di trasferimento previsti dal GDPR, come decisioni di adeguatezza, clausole contrattuali standard o misure equivalenti, ove applicabili.
+  </p>
+
+  <h2>9. Conservazione</h2>
+  <p>
+    Conserviamo i dati per il tempo necessario alle finalita' per cui sono raccolti. In particolare:
+  </p>
+  <ul>
+    <li>i dati account e profilo restano finche' l'account e' attivo, salvo obblighi o interessi legittimi di conservazione;</li>
+    <li>gli annunci restano finche' sono gestiti dall'utente o necessari a conversazioni e storico autorizzato;</li>
+    <li>gli skip su profili e annunci sono soggetti a retention limitata, attualmente progettata su 90 giorni;</li>
+    <li>le conversazioni possono restare disponibili ai partecipanti; dopo cancellazione account, le chat dirette possono restare in sola lettura per l'altro partecipante con placeholder dell'utente eliminato;</li>
+    <li>le richieste relative ad annunci eliminati possono mantenere contesto minimizzato; dati come indirizzo preciso e thumbnail sono progettati per essere redatti dopo un periodo di retention, attualmente 180 giorni;</li>
+    <li>le segnalazioni possono essere conservate piu' a lungo per sicurezza, moderazione, difesa da abusi e tutela legale.</li>
+  </ul>
+
+  <h2>10. Cancellazione account</h2>
+  <p>
+    L'app prevede una funzione di cancellazione account. La cancellazione rimuove account, profilo, immagini profilo e dati direttamente collegati quando tecnicamente e giuridicamente possibile. Alcuni dati possono restare in forma minimizzata o limitata, ad esempio conversazioni visibili all'altro partecipante, contesto storico di richieste annuncio, report di sicurezza o dati necessari a obblighi di legge e difesa da pretese.
+  </p>
+
+  <h2>11. Diritti dell'utente</h2>
+  <p>
+    Nei limiti previsti dal GDPR, puoi chiedere accesso, rettifica, cancellazione, limitazione, portabilita', opposizione al trattamento e revoca del consenso. Puoi scrivere a <a href="mailto:info@housemateapp.it">info@housemateapp.it</a>. Hai inoltre diritto di proporre reclamo al Garante per la protezione dei dati personali o all'autorita' competente.
+  </p>
+
+  <h2>12. Sicurezza</h2>
+  <p>
+    HouseMate adotta misure tecniche e organizzative proporzionate, incluse autorizzazioni per utente, bucket storage privati, accessi tramite funzioni controllate, cancellazione e retention progettate, e separazione tra dati interni e dati mostrati nella discovery. Nessun sistema e' pero' completamente immune da rischi: ti invitiamo a usare password sicure e a non condividere dati non necessari in profilo, annunci o chat.
+  </p>
+
+  <h2>13. Minori</h2>
+  <p>
+    HouseMate e' destinata a utenti maggiorenni. Il sistema e' progettato con eta' minima di 18 anni. Se ritieni che un minore abbia creato un account, contattaci.
+  </p>
+
+  <h2>14. Modifiche</h2>
+  <p>
+    Potremo aggiornare questa informativa per riflettere cambiamenti del servizio, della legge o dei fornitori. In caso di modifiche sostanziali, potremo informarti nell'app, via email o richiedere una nuova accettazione.
+  </p>
 </LegalLayout>

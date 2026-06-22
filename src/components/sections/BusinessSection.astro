@@ -1,21 +1,23 @@
 ---
-import { getLangFromUrl, getRoutes } from '../../i18n/utils';
+import { getLangFromUrl } from '../../i18n/utils';
 import { homeContent } from '../../i18n/content';
 import Icon from '../Icon.astro';
-import PhoneMockup from '../PhoneMockup.astro';
+import ContactForm from '../ContactForm.astro';
 
 const lang = getLangFromUrl(Astro.url);
-const r = getRoutes(lang);
 const b = homeContent[lang].business;
 ---
 
 <section id="business" class="section-y scroll-mt-28">
   <div class="container-page">
     <div class="panel bg-ink text-on-dark">
-      <div class="grid items-end gap-8 px-8 pt-10 sm:px-14 sm:pt-16 md:grid-cols-2">
-        <div class="pb-10 sm:pb-16 md:self-center">
+      <div class="grid gap-10 p-8 sm:p-12 md:grid-cols-2 lg:gap-16">
+        <!-- Pitch proprietari -->
+        <div class="md:self-center" data-animate="up">
           <span class="eyebrow">{b.eyebrow}</span>
-          <h2 class="mt-3 max-w-md text-[clamp(1.9rem,3.5vw,2.9rem)] font-extrabold text-on-dark">{b.title}</h2>
+          <h2 class="mt-3 max-w-md text-[clamp(1.9rem,3.5vw,2.9rem)] font-extrabold text-on-dark">
+            {b.title}
+          </h2>
           <p class="mt-4 max-w-md text-lg text-muted-on-dark">{b.text}</p>
 
           <ul class="mt-7 space-y-3">
@@ -30,14 +32,14 @@ const b = homeContent[lang].business;
               ))
             }
           </ul>
-
-          <a href={r.contact} class="btn-primary mt-9">{b.cta}</a>
         </div>
 
-        <div class="flex justify-center md:justify-end">
-          <div class="-mb-12 w-52">
-            <PhoneMockup src="/images/inquiry chat screen.webp" alt="HouseMate inquiry chat screen" />
-          </div>
+        <!-- Contatti (stessa pagina) -->
+        <div id="contatti" class="scroll-mt-28 rounded-card bg-surface p-7 sm:p-8" data-animate="up">
+          <span class="eyebrow">{b.contactEyebrow}</span>
+          <h3 class="mt-2 text-2xl font-bold sm:text-3xl">{b.contactTitle}</h3>
+          <p class="mt-3 text-muted">{b.contactText}</p>
+          <ContactForm />
         </div>
       </div>
     </div>

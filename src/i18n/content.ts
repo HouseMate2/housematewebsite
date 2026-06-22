@@ -1,9 +1,9 @@
 // ============================================================================
 // HOUSEMATE — Contenuti della landing (copy IT/EN)
 // ----------------------------------------------------------------------------
-// Tutto il testo della home sta qui. È una BOZZA realistica: rifinisci i
-// messaggi con la tua value proposition reale. Gli `icon` sono nomi gestiti
-// dal componente Icon.astro. I numeri in `stats` sono placeholder.
+// Tutto il testo + l'assegnazione dei mockup sta qui.
+// L'app è un "swipe per la casa condivisa": si scoprono Stanze (Houses) e
+// Coinquilini (Mates), si mette like/si scarta, si fa match e si chatta.
 // ============================================================================
 import type { Lang } from './ui';
 
@@ -13,261 +13,180 @@ export interface Feature {
   text: string;
 }
 
+export interface Shot {
+  src: string;
+  alt: string;
+}
+
+export interface Panel {
+  icon: string;
+  title: string;
+  text: string;
+  front: Shot; // mockup principale
+  back?: Shot; // mockup secondario che si sovrappone (opzionale)
+  tint: string; // panel-peach | panel-cream | panel-rose
+}
+
 export interface HomeContent {
   hero: {
-    badge: string;
     title: string;
     titleAccent: string;
     subtitle: string;
     ctaPrimary: string;
     ctaSecondary: string;
-    rating: string;
+    comingSoon: string;
   };
   featuresEyebrow: string;
   featuresTitle: string;
-  features: Feature[];
+  panels: Panel[];
+  miniEyebrow: string;
+  miniTitle: string;
+  miniFeatures: Feature[];
   business: {
     eyebrow: string;
     title: string;
     text: string;
     bullets: string[];
-    cta: string;
+    contactEyebrow: string;
+    contactTitle: string;
+    contactText: string;
   };
-  miniEyebrow: string;
-  miniTitle: string;
-  miniFeatures: Feature[];
-  stats: { value: string; label: string }[];
-  testimonialsEyebrow: string;
-  testimonialsTitle: string;
-  testimonials: { quote: string; name: string; role: string }[];
-  finalCta: { title: string; subtitle: string };
 }
+
+const IMG = {
+  houses: { src: '/images/discovery houses iPhone.webp', alt: 'Schermata HouseMate: scopri le stanze disponibili' },
+  housesInfo: { src: '/images/discovery houses info iPhone.webp', alt: 'Schermata HouseMate: dettaglio di una stanza' },
+  mates: { src: '/images/discovery mates iPhone.webp', alt: 'Schermata HouseMate: scopri i coinquilini' },
+  matesInfo: { src: '/images/discovery mates infos iPhone.webp', alt: 'Schermata HouseMate: profilo di un coinquilino' },
+  chat: { src: '/images/chat iPhone.webp', alt: 'Schermata HouseMate: chat in-app' },
+};
 
 export const homeContent: Record<Lang, HomeContent> = {
   it: {
     hero: {
-      badge: 'La casa condivisa, semplice',
       title: 'Trova la stanza giusta.',
       titleAccent: 'Trova i coinquilini giusti.',
       subtitle:
-        'HouseMate mette in contatto chi cerca una stanza e chi la affitta. Annunci verificati, chat sicura e match intelligente — tutto in un’unica app.',
-      ctaPrimary: 'Scarica l’app',
-      ctaSecondary: 'Affitti camere?',
-      rating: '4,8 ★ · oltre 10.000 download',
+        'Scopri stanze e coinquilini con uno swipe. Metti like, fai match e chatti in app: HouseMate rende la ricerca della casa condivisa semplice, veloce e umana.',
+      ctaPrimary: 'Scopri come funziona',
+      ctaSecondary: 'Affitti una stanza?',
+      comingSoon: 'In arrivo su iOS e Android',
     },
     featuresEyebrow: 'Come funziona',
-    featuresTitle: 'Tutto quello che ti serve per vivere bene insieme',
-    features: [
+    featuresTitle: 'Casa e coinquilini, con uno swipe',
+    panels: [
       {
-        icon: 'search',
-        title: 'Cerca senza stress',
-        text: 'Filtra per zona, prezzo e stile di vita. Vedi solo le stanze che fanno davvero per te.',
+        icon: 'home',
+        title: 'Sfoglia le stanze come piace a te',
+        text: 'Scorri le stanze disponibili e apri ogni annuncio per vedere foto, metratura, prezzo, stanze libere, residenti e servizi. Tutto su mappa, con la distanza da te.',
+        front: IMG.houses,
+        back: IMG.housesInfo,
+        tint: 'panel-peach',
       },
       {
         icon: 'users',
-        title: 'Match con i coinquilini',
-        text: 'Abbiniamo abitudini e interessi: scopri se andate d’accordo prima ancora di traslocare.',
+        title: 'Le persone giuste, non a caso',
+        text: 'Profili veri con stile di vita, lavoro, lingue, budget e periodo di ricerca. Metti like a chi è compatibile con te e scopri se il feeling è reciproco.',
+        front: IMG.mates,
+        back: IMG.matesInfo,
+        tint: 'panel-cream',
       },
       {
         icon: 'message',
-        title: 'Chat sicura e diretta',
-        text: 'Parla con inquilini e gestori dentro l’app, senza dover condividere il tuo numero.',
+        title: 'Fai match, poi si chatta',
+        text: 'Quando l’interesse è reciproco scatta il match: chatti in app con coinquilini e proprietari, fai domande sull’annuncio e organizzi tutto, anche in chat di gruppo con la futura casa.',
+        front: IMG.chat,
+        tint: 'panel-rose',
       },
-      {
-        icon: 'shield',
-        title: 'Annunci verificati',
-        text: 'Ogni inserzionista viene verificato: meno sorprese, più tranquillità per te.',
-      },
+    ],
+    miniEyebrow: 'Tutto in un’app',
+    miniTitle: 'Pensata per la vita condivisa',
+    miniFeatures: [
+      { icon: 'map', title: 'Ricerca per zona', text: 'Annunci su mappa con distanza reale.' },
+      { icon: 'shield', title: 'Profili curati', text: 'Foto e dettagli per scelte consapevoli.' },
+      { icon: 'users', title: 'Match per affinità', text: 'Abbinamenti per stile di vita e budget.' },
+      { icon: 'message', title: 'Chat e gruppi', text: 'Scrivi 1:1 o con tutta la casa.' },
+      { icon: 'home', title: 'Crea il tuo annuncio', text: 'Pubblica la stanza con foto e mappa.' },
+      { icon: 'globe', title: 'Multilingua', text: 'L’app parla la tua lingua.' },
     ],
     business: {
       eyebrow: 'Per i business',
-      title: 'Affitti camere? HouseMate lavora per te.',
-      text:
-        'Pubblica le tue stanze, raggiungi inquilini in target e gestisci ogni richiesta da un’unica dashboard.',
+      title: 'Affitti stanze? Gestisci tutto da HouseMate.',
+      text: 'Pubblica le tue stanze con foto e posizione sulla mappa, ricevi richieste da inquilini in target e gestiscile con i filtri — senza più annunci dispersi e messaggi ovunque.',
       bullets: [
-        'Annunci sempre in evidenza nelle ricerche',
-        'Contatti qualificati, niente perditempo',
-        'Richieste e calendario in un posto solo',
-        'Statistiche chiare sulle tue inserzioni',
+        'Crea annunci con foto e mappa in pochi minuti',
+        'Ricevi richieste qualificate e filtrabili',
+        'Chatti con i candidati e la futura casa',
+        'Una sola dashboard per gestire tutto',
       ],
-      cta: 'Contattaci',
-    },
-    miniEyebrow: 'E non è tutto',
-    miniTitle: 'Pensata nei minimi dettagli',
-    miniFeatures: [
-      { icon: 'map', title: 'Mappa interattiva', text: 'Esplora i quartieri.' },
-      { icon: 'heart', title: 'Preferiti', text: 'Salva le stanze top.' },
-      { icon: 'bell', title: 'Notifiche smart', text: 'Avvisi sui nuovi annunci.' },
-      { icon: 'star', title: 'Recensioni', text: 'Feedback trasparenti.' },
-      { icon: 'file', title: 'Contratti digitali', text: 'Tutto in app.' },
-      { icon: 'lock', title: 'Privacy', text: 'I tuoi dati al sicuro.' },
-      { icon: 'globe', title: 'Multilingua', text: 'Italiano e inglese.' },
-      { icon: 'home', title: 'Profilo casa', text: 'Racconta la convivenza.' },
-    ],
-    stats: [
-      { value: '10K+', label: 'download' },
-      { value: '2.500', label: 'stanze pubblicate' },
-      { value: '30', label: 'città in Italia' },
-      { value: '4,8★', label: 'valutazione media' },
-    ],
-    testimonialsEyebrow: 'Dicono di noi',
-    testimonialsTitle: 'Persone che hanno trovato casa con HouseMate',
-    testimonials: [
-      {
-        quote:
-          'In una settimana ho trovato una stanza e dei coinquilini con cui vado d’accordo davvero. Zero stress.',
-        name: 'Giulia R.',
-        role: 'Studentessa, Milano',
-      },
-      {
-        quote:
-          'Il match sui coinquilini è geniale: niente più sorprese sul conto della casa o sugli orari.',
-        name: 'Marco T.',
-        role: 'Lavoratore, Bologna',
-      },
-      {
-        quote:
-          'Da quando pubblico le stanze su HouseMate ricevo solo contatti seri. Gestione tutta in un’app.',
-        name: 'Anna L.',
-        role: 'Property manager, Roma',
-      },
-    ],
-    finalCta: {
-      title: 'Pronto a trovare casa?',
-      subtitle: 'Scarica HouseMate e trova la tua prossima stanza oggi stesso.',
+      contactEyebrow: 'Contatti',
+      contactTitle: 'Parliamone',
+      contactText:
+        'Sei un proprietario, un’agenzia o gestisci più stanze? Raccontaci cosa ti serve: ti rispondiamo a breve.',
     },
   },
 
   en: {
     hero: {
-      badge: 'Shared living, made simple',
       title: 'Find the right room.',
       titleAccent: 'Find the right roommates.',
       subtitle:
-        'HouseMate connects people looking for a room with those renting one. Verified listings, secure chat and smart matching — all in one app.',
-      ctaPrimary: 'Get the app',
-      ctaSecondary: 'Renting rooms?',
-      rating: '4.8 ★ · 10,000+ downloads',
+        'Discover rooms and roommates with a swipe. Like, match and chat in-app: HouseMate makes finding shared living simple, fast and human.',
+      ctaPrimary: 'See how it works',
+      ctaSecondary: 'Renting a room?',
+      comingSoon: 'Coming soon on iOS and Android',
     },
     featuresEyebrow: 'How it works',
-    featuresTitle: 'Everything you need to live well together',
-    features: [
+    featuresTitle: 'Home and roommates, with a swipe',
+    panels: [
       {
-        icon: 'search',
-        title: 'Search without stress',
-        text: 'Filter by area, price and lifestyle. See only the rooms that are right for you.',
+        icon: 'home',
+        title: 'Browse rooms your way',
+        text: 'Swipe through available rooms and open each listing for photos, size, price, free rooms, residents and amenities. All on a map, with the distance from you.',
+        front: IMG.houses,
+        back: IMG.housesInfo,
+        tint: 'panel-peach',
       },
       {
         icon: 'users',
-        title: 'Match with roommates',
-        text: 'We match habits and interests, so you know you’ll get along before you move in.',
+        title: 'The right people, not by chance',
+        text: 'Real profiles with lifestyle, job, languages, budget and search window. Like the people who fit you and find out if the feeling is mutual.',
+        front: IMG.mates,
+        back: IMG.matesInfo,
+        tint: 'panel-cream',
       },
       {
         icon: 'message',
-        title: 'Secure, direct chat',
-        text: 'Talk to tenants and managers inside the app, without sharing your number.',
+        title: 'Match, then chat',
+        text: 'When the interest is mutual you get a match: chat in-app with roommates and owners, ask about a listing and sort everything out — even in a group chat with your future home.',
+        front: IMG.chat,
+        tint: 'panel-rose',
       },
-      {
-        icon: 'shield',
-        title: 'Verified listings',
-        text: 'Every advertiser is verified: fewer surprises, more peace of mind.',
-      },
+    ],
+    miniEyebrow: 'All in one app',
+    miniTitle: 'Built for shared living',
+    miniFeatures: [
+      { icon: 'map', title: 'Search by area', text: 'Listings on a map with real distance.' },
+      { icon: 'shield', title: 'Rich profiles', text: 'Photos and details for confident choices.' },
+      { icon: 'users', title: 'Affinity matching', text: 'Matches by lifestyle and budget.' },
+      { icon: 'message', title: 'Chat & groups', text: 'Message 1:1 or the whole house.' },
+      { icon: 'home', title: 'Create your listing', text: 'Post a room with photos and map.' },
+      { icon: 'globe', title: 'Multilingual', text: 'The app speaks your language.' },
     ],
     business: {
       eyebrow: 'For business',
-      title: 'Renting rooms? HouseMate works for you.',
-      text:
-        'Publish your rooms, reach the right tenants and manage every request from a single dashboard.',
+      title: 'Renting rooms? Manage it all in HouseMate.',
+      text: 'Publish your rooms with photos and a map location, get requests from the right tenants and handle them with filters — no more scattered ads and messages everywhere.',
       bullets: [
-        'Listings always highlighted in search',
-        'Qualified leads, no time-wasters',
-        'Requests and calendar in one place',
-        'Clear stats on your listings',
+        'Create listings with photos and map in minutes',
+        'Get qualified, filterable requests',
+        'Chat with candidates and your future house',
+        'One dashboard to manage everything',
       ],
-      cta: 'Get in touch',
-    },
-    miniEyebrow: 'And that’s not all',
-    miniTitle: 'Designed down to the last detail',
-    miniFeatures: [
-      { icon: 'map', title: 'Interactive map', text: 'Explore neighbourhoods.' },
-      { icon: 'heart', title: 'Favourites', text: 'Save the best rooms.' },
-      { icon: 'bell', title: 'Smart alerts', text: 'New listings, instantly.' },
-      { icon: 'star', title: 'Reviews', text: 'Transparent feedback.' },
-      { icon: 'file', title: 'Digital contracts', text: 'All in the app.' },
-      { icon: 'lock', title: 'Privacy', text: 'Your data, secured.' },
-      { icon: 'globe', title: 'Multilingual', text: 'Italian and English.' },
-      { icon: 'home', title: 'Home profile', text: 'Show the living vibe.' },
-    ],
-    stats: [
-      { value: '10K+', label: 'downloads' },
-      { value: '2,500', label: 'rooms listed' },
-      { value: '30', label: 'cities in Italy' },
-      { value: '4.8★', label: 'average rating' },
-    ],
-    testimonialsEyebrow: 'Testimonials',
-    testimonialsTitle: 'People who found a home with HouseMate',
-    testimonials: [
-      {
-        quote:
-          'In a week I found a room and roommates I genuinely get along with. Zero stress.',
-        name: 'Giulia R.',
-        role: 'Student, Milan',
-      },
-      {
-        quote:
-          'The roommate matching is brilliant: no more surprises about bills or schedules.',
-        name: 'Marco T.',
-        role: 'Professional, Bologna',
-      },
-      {
-        quote:
-          'Since I list rooms on HouseMate I only get serious leads. Everything managed in one app.',
-        name: 'Anna L.',
-        role: 'Property manager, Rome',
-      },
-    ],
-    finalCta: {
-      title: 'Ready to find a home?',
-      subtitle: 'Download HouseMate and find your next room today.',
+      contactEyebrow: 'Contact',
+      contactTitle: 'Let’s talk',
+      contactText:
+        'Are you an owner, an agency or managing several rooms? Tell us what you need and we’ll get back to you soon.',
     },
   },
-};
-
-// Pannelli grandi (storytelling approfondito, telefono che emerge dalla card)
-export interface Panel {
-  icon: string;
-  title: string;
-  text: string;
-  tint: string; // panel-peach | panel-cream | panel-rose
-}
-
-export const panels: Record<Lang, Panel[]> = {
-  it: [
-    {
-      icon: 'users',
-      title: 'Coinquilini su misura, non a caso',
-      text: 'Rispondi a poche domande su orari, abitudini e interessi: HouseMate calcola la compatibilità e ti mostra le persone con cui andresti davvero d’accordo.',
-      tint: 'panel-peach',
-    },
-    {
-      icon: 'shield',
-      title: 'Sicurezza e fiducia, prima di tutto',
-      text: 'Profili e annunci verificati, chat protetta dentro l’app e recensioni reali: affitti e trovi casa senza pensieri.',
-      tint: 'panel-cream',
-    },
-  ],
-  en: [
-    {
-      icon: 'users',
-      title: 'Roommates tailored to you, not random',
-      text: 'Answer a few questions about your schedule, habits and interests: HouseMate computes compatibility and shows you the people you’d actually get along with.',
-      tint: 'panel-peach',
-    },
-    {
-      icon: 'shield',
-      title: 'Safety and trust, first',
-      text: 'Verified profiles and listings, protected in-app chat and real reviews: rent and find a home with peace of mind.',
-      tint: 'panel-cream',
-    },
-  ],
 };
